@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="userService" class="com.duan.service.UserServiceImpl"/>
+    <bean id="log" class="com.duan.log.Log"/>
+
+    <!--方式一-->
+    <!--配置aop-->
+<!--    <aop:config>-->
+<!--        &lt;!&nda                     sh;切入点：方法在那里执行   expression:表达式，execution（）&ndash;&gt;-->
+<!--        <aop:pointcut id="pointcut" expression="execution(* com.duan.service.UserServiceImpl.*(..))"/>-->
+
+<!--        &lt;!&ndash;执行环绕增加！&ndash;&gt;-->
+<!--        &lt;!&ndash;将bean注册的类log，切入到pointcut的方法中&ndash;&gt;-->
+<!--        <aop:advisor advice-ref="log" pointcut-ref="pointcut"/>-->
+
+<!--    </aop:config>-->
+
+    <bean id="diy" class="com.duan.diy.DiyPointCut"/>
+
+    <aop:config>
+        <!--自定义切面，ref:要引用的类-->
+        <aop:aspect ref="diy">
+            <!--切入点-->
+            <aop:pointcut id="point" expression="exection(* com.duan.service.UserServiceImpl.*(..))"/>
+            <!--通知-->
+            <aop:before method="before" pointcut-ref="point"/>
+            <aop:after method="after" pointcut-ref="point"/>
+        </aop:aspect>
+    </aop:config>
+</beans>

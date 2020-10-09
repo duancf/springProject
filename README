@@ -1,0 +1,60 @@
+##常用依赖
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+</beans>
+```
+##注解说明
+- Autowired:自动装配通过byType方式实现
+    如果Autowired不能唯一自动装配上属性，则需要@Qualifier(value = "xxx")
+- @Nullable：字段标记了这个注解，说明字段可以可以为null
+- @Resource：自动装配，默认通过byName实现，若找不到名字，则通过byType实现，两种都找不到报错
+
+
+- @Component ：组件 放在类上，说明这个类被Spring管理了，就是bean;
+``<context:component-scan base-package="com.duan.pojo"/>``
+    - dao层【@Repository】;
+    - service【@Service】;
+    - controller【@Controller】;
+    - 这四个注解功能一样，都是代表某个类注册到Spring中，装配Bean;
+
+- java配置，@Configuration(标注在配置类前)代表一个配置类，类中方法(@Bean标注在方法上)就是一个bean，方法返回值相当于bean标签中的class属性；
+
+##AOP
+- 代理模式
+    - 静态代理：一个真实角色会产生一个代理角色，代码量会翻倍，开发效率变低；
+    - 动态代理：
+        - 可以使真实角色的操作更加纯粹，不用去关注一些公共的业务；
+        - 公共也就就给代理角色，实现业务的分工；
+        - 公共业务发生扩展的时候，方便集中管理；
+        - 一个动态代理类代理的是一个接口，一般就是对应的一类业务(动态代理优点)
+        - 一个代理类可以代理多个类，只要是实现了同一个接口即可(动态代理优点)
+- AOP：面向切面编程，通过预编译方式和运行期动态代理实现程序功能的同意维护的一种技术。
+利用AOP可以对业务逻辑的各个部分进行隔离，从而使得业务逻辑各部分之间的耦合度降低，提高程序的可重用性，同时提高了开发的效率；
+- 使用Spring实现Aop
+    - 使用Spring的API接口
+    - 自定义类实现Aop
+    - 使用注解方式实现
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

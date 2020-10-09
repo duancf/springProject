@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="User" class="com.duan.pojo.User">
+        <!--property name="name" value="dcf"/-->
+<!--        <constructor-arg index="0" value="下标实现有参构造！"/>-->
+<!--        <constructor-arg type="java.lang.String" value="类型实现"/>-->
+        <constructor-arg name="name" value="第三种"/>
+    </bean>
+    <alias name = "User" alias="afdsfgga"/>
+
+    <!-- more bean definitions go here -->
+
+</beans>
